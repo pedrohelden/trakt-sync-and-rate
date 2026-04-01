@@ -13,24 +13,25 @@ const PORT = process.env.PORT || 7000;
 // Determine SERVER_URL for different environments
 let SERVER_URL = process.env.SERVER_URL;
 
-/* Determination antiga caindo em localhost sempre por n usar vercel nem render
+//Determination antiga caindo em localhost sempre por n usar vercel nem render
 if (!SERVER_URL) {
   if (process.env.VERCEL_URL) {
     SERVER_URL = `https://${process.env.VERCEL_URL}`;
   } else if (process.env.RENDER_EXTERNAL_URL) {
-    SERVER_URL = process.env.RENDER_EXTERNAL_URL;
+    SERVER_URL = `https://${process.env.RENDER_EXTERNAL_URL}`; // add https://
   } else if (process.env.NODE_ENV === 'production') {
     SERVER_URL = `https://stremio-trakt.pls3333.duckdns.org`;
   } else {
     SERVER_URL = `http://localhost:${PORT}`;
   }
 }
-*/
 
-//Hardcode de Determination no IP da máquina
+
+/*//Hardcode de Determination no IP da máquina
 if (!SERVER_URL) {
   SERVER_URL = `http://192.168.18.4:${PORT}`;
 }
+*/
 
 // ============================================
 // CDN Configuration
