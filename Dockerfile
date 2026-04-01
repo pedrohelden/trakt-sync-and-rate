@@ -24,8 +24,9 @@ USER nodejs
 EXPOSE 7000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:7000/health || exit 1
+#RUN apk add --no-cache wget
+#HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+#  CMD wget --no-verbose --tries=1 --spider http://localhost:7000/health || exit 1
 
 # Start application
 CMD ["node", "server.js"]
