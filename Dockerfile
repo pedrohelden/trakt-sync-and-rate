@@ -2,31 +2,25 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-# Copy package files
+# Copy package files first for caching
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install --only=production
 
-# Copy application files
+# Copy app files
 COPY . .
 
-# Create public directory
+# Optional: remove if 'public' exists in repo
 RUN mkdir -p public
 
-# Create non-root user
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nodejs -u 1001
-RUN chown -R nodejs:nodejs /usr/src/app
+# Non-root user
+RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001 \
+    && chown -R nodejs:nodejs /usr/src/app
 USER nodejs
 
-# Expose port
+# Expose port (informative)
 EXPOSE 7000
 
-# Health check
-#RUN apk add --no-cache wget
-#HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-#  CMD wget --no-verbose --tries=1 --spider http://localhost:7000/health || exit 1
-
-# Start application
+# CMD
 CMD ["node", "server.js"]

@@ -2623,7 +2623,7 @@ export default app;
 // Server Startup (Always listen for Render)
 // ============================================
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7000;
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`🚀 Trakt Addon Server Started v2.4.0`);
