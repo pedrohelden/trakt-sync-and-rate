@@ -2583,6 +2583,7 @@ app.get("/cleanup", (req, res) => {
   });
 });
 
+/*
 // ============================================
 // Server Startup
 // ============================================
@@ -2614,5 +2615,40 @@ if (process.env.NODE_ENV !== 'production' || process.env.RUN_SERVER) {
     console.log(`\n✅ IMPORTANT: Fixed user rating error and implemented custom stream ordering!`);
   });
 }
+
+export default app;
+*/
+
+// ============================================
+// Server Startup (Always listen for Render)
+// ============================================
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`🚀 Trakt Addon Server Started v2.4.0`);
+  console.log(`📋 Configuration: ${SERVER_URL}/configure`);
+  console.log(`📦 Default Manifest: ${SERVER_URL}/manifest.json`);
+  console.log(`📦 Configured Manifest Example: ${SERVER_URL}/configured/eyJjbGllbnRJZCI6Ii4uLiJ9/manifest.json`);
+  console.log(`🔐 OAuth: ${SERVER_URL}/oauth/initiate`);
+  console.log(`🔑 Upstash Test: POST ${SERVER_URL}/upstash/test`);
+  console.log(`🔑 Get Tokens: POST ${SERVER_URL}/oauth/tokens`);
+  console.log(`🧪 Health: ${SERVER_URL}/health`);
+  console.log(`🧹 Cleanup: ${SERVER_URL}/cleanup`);
+  console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`⚡ Server URL: ${SERVER_URL}`);
+  console.log(`🖼️  Images: Logo: ${LOGO_URL}, Background: ${BACKGROUND_URL}`);
+  console.log(`🔧 Features: Watched/Unwatched, Season Watched, Ratings, Watchlist, Keep Single State`);
+  console.log(`🎨 Rating Patterns: Original, Pattern 1, Pattern 6`);
+  console.log(`📊 Stats Display: Customizable Trakt stats (choose any 3)`);
+  console.log(`🔐 Persistent Storage: Upstash Redis for 90-day token storage`);
+  console.log(`⚠️  Fallback System: Local cache when Upstash is unreachable`);
+  console.log(`🎬 Video: Using Overseerr wait.mp4 video (proven to work with Stremio)`);
+  console.log(`🔄 Keep Single State: Removes duplicates when marking as watched`);
+  console.log(`⭐ Current Rating Display - Shows your existing ratings in Stremio`);
+  console.log(`🗑️  Remove Rating Option - Single stream for removing existing ratings (no duplicates)`);
+  console.log(`📋 NEW: Custom Stream Ordering - Drag and drop to reorder streams in Stremio`);
+  console.log(`\n✅ IMPORTANT: Fixed user rating error and implemented custom stream ordering!`);
+});
 
 export default app;
